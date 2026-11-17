@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #333;
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+}
+
+.Parent-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #3c3a3a;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    gap: 10px;
+}
+
+form input[type="text"] {
+    padding: 0.625rem 0.75rem;
+    font-size: clamp(0.9375rem, 2vw, 1rem);
+    border: none;
+    border-radius: 10px;
+    background-color: #ddd2d2;
+    color: #000000;
+    outline: none;
+    min-width: 0;
+    flex: 1;
+}
+
+form input[type="submit"] {
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #051f49;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .3s ease;
+    flex-shrink: 0;
+}
+
+form input[type="submit"]:hover {
+    background-color: #082c65;
+}
+
+#weather-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.icon img {
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.temperature {
+    font-size: clamp(32px, 8vw, 48px);
+    font-weight: bold;
+    margin: 20px 0px;
+}
+
+.description {
+    font-size: clamp(18px, 5vw, 24px);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.details {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.details > div {
+    padding: 20px;
+    background-color: #444343;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin: 10px;
+    flex: 1 1 120px;
+    text-align: center;
+    min-height: 45px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    .Parent-container {
+        width: calc(100% - 30px);
+        margin: 20px auto;
+        padding: 15px;
+    }
+
+    form {
+        gap: 8px;
+    }
+
+    .details>div {
+        flex: 1 1 100%;
+    }
+}
