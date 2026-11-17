@@ -108,8 +108,6 @@ form input[type="submit"]:hover {
     box-sizing: border-box;
 }
 
-
-
 @media (max-width: 480px) {
     .Parent-container {
         width: calc(100% - 30px);

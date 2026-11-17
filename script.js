@@ -1,7 +1,6 @@
 const input = document.querySelector("#city-input");
 const formEl = document.querySelector("form");
 const weatherData = document.querySelector("#weather-data");
-const ParentContainer = document.querySelector(".Parent-container");
 const errorContainer = document.querySelector(".error");
 
 formEl.addEventListener("submit", function (detail) {
