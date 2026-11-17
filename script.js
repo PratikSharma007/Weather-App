@@ -4,6 +4,7 @@ const input = document.querySelector("#city-input");
 const formEl = document.querySelector("form");
 const weatherData = document.querySelector("#weather-data");
 const ParentContainer = document.querySelector(".Parent-container");
+const errorContainer = document.querySelector(".error");
 
 formEl.addEventListener("submit", function (detail) {
   detail.preventDefault();
@@ -12,8 +13,12 @@ formEl.addEventListener("submit", function (detail) {
 });
 
 async function getMeValue(cityDetail) {
-    weatherData.innerHTML = ""
-    document.querySelector(".error").style.display = "none"
+  weatherData.innerHTML = "";
+  errorContainer.innerHTML = "";
+
+  let weatherH3 = document.createElement("h3");
+  weatherH3.textContent = "Loading weather...";
+  weatherData.append(weatherH3);
 
   try {
     const response = await fetch(
@@ -21,11 +26,25 @@ async function getMeValue(cityDetail) {
     );
 
     if (!response.ok) {
-      throw new Error("Something went wrond, try again");
+      if (response.status === 404) {
+        throw new Error("City not found. Please enter a valid city name.");
+      }
+
+      if (response.status === 401) {
+        throw new Error("Invalid API key.");
+      }
+
+      if (response.status >= 500) {
+        throw new Error("Server error. Please try again later.");
+      }
+
+      throw new Error("Something went wrong. Please try again.");
     }
 
     const readableData = await response.json();
     console.log(readableData);
+
+    weatherH3.remove();
 
     let icon = document.createElement("div");
     icon.classList = "icon";
@@ -63,8 +82,11 @@ async function getMeValue(cityDetail) {
     weatherData.appendChild(temperature);
     weatherData.appendChild(description);
     weatherData.appendChild(details);
-  } catch (error) {
-    console.log(error.message);
-    document.querySelector(".error").style.display = "initial"
+  } catch (error) {    
+    weatherH3.remove();
+
+    let h3 = document.createElement("h3");
+    h3.textContent = error.message;
+    errorContainer.appendChild(h3);
   }
 }
